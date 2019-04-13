@@ -3,16 +3,18 @@ version: '3'
 services:
   met-service:
     image: met-service
+    restart: always
     build: .
     ports:
       - 5000:5000
     volumes:
       - .:/app
     entrypoint: python3
-    command: /app/src/app.py
+    command: /app/src/service.py
     environment:
       stage: local
       project_config_dir: ./src/settings
+      DARKSKY_API_KEY: $DARKSKY_API_KEY
   met-service-test:
       build: .
       volumes:
