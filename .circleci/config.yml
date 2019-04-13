@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Run Tests
           command: |
-            $HOME/.local/bin/coverage run -m pytest -vv --cov=src tests/
+            $HOME/.local/bin/pytest -vv --cov=src tests/
             $HOME/.local/bin/coverage html -d artifacts
       - store_artifacts:
           path: artifacts
