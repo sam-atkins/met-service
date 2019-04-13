@@ -21,6 +21,7 @@ jobs:
           key: requirements_2-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
           paths:
             - "/home/circleci/.local/lib/python3.7/site-packages"
+            - "$HOME/.local/bin"
       - run:
           name: Run Tests
           command: |
