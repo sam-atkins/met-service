@@ -18,6 +18,6 @@ services:
       volumes:
         - ./:/app
       entrypoint: ''
-      command: bash -c "pytest -vv --cov ."
+      command: bash -c "pytest -vv --cov=src tests/"
       environment:
         stage: test
