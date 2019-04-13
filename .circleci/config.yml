@@ -11,22 +11,23 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: requirements_3-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
+          key: requirements_4-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
       - run:
-          name: Setup testing environment
+          name: Install Python dependencies in a virtual env
           command: |
-            pip install -r requirements-test.txt --user
-            echo $HOME
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements-test.txt
       - save_cache:
-          key: requirements_3-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
+          key: requirements_4-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
           paths:
-            - "/home/circleci/.local/lib/python3.7/site-packages"
-            - "$HOME/.local/bin"
+            - "venv"
       - run:
-          name: Run Tests
+          name: Run tests
           command: |
-            $HOME/.local/bin/pytest -vv --cov=src tests/
-            $HOME/.local/bin/coverage html -d artifacts
+            . venv/bin/activate
+            pytest -vv --cov=src tests/
+            coverage html -d artifacts
       - store_artifacts:
           path: artifacts
           destination: cov
