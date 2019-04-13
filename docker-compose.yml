@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  met-service:
+    image: met-service
+    build: .
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/app
+    entrypoint: python3
+    command: /app/src/app.py
+    environment:
+      stage: local
+      project_config_dir: ./src/settings
+  # met-service-test:
+  #     build: .
+  #     volumes:
+  #       - ./:/app
+  #     entrypoint: python3
+  #     command: pytest -vv
+  #     environment:
+  #       stage: test
+
+# services:
+#   weather-service:
+#     # restart: always
+#     build: .
+#     ports:
+#       - "5000:5000"
+    # volumes:
+    #   - .:/opt/app
+    # entrypoint: python3
+    # command: /opt/app/src/app.py
