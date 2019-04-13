@@ -1,2 +1,6 @@
 project_name: met-service
 DEBUG: False
+darksky_exclude:
+  - minutely
+  - hourly
+  - flags
