@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/circleci
+    environment:
+        stage: test
+        project_config_dir: src/settings/
+    docker:
+      # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - restore_cache:
+          key: requirements_1-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
+      - run:
+          name: Setup testing environment
+          command: |
+            pip install -r requirements-test.txt --user
+            echo $HOME
+      - save_cache:
+          key: requirements_1-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
+          paths:
+            - "/home/circleci/.local/lib/python3.7/site-packages"
+      - run:
+          name: Run Tests
+          command: |
+            $HOME/.local/bin/coverage run -m pytest -vv --cov=src tests/
+            $HOME/.local/bin/coverage html -d artifacts
+      - store_artifacts:
+          path: artifacts
+          destination: cov
