@@ -11,14 +11,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: requirements_1-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
+          key: requirements_2-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
       - run:
           name: Setup testing environment
           command: |
             pip install -r requirements-test.txt --user
             echo $HOME
       - save_cache:
-          key: requirements_1-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
+          key: requirements_2-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
           paths:
             - "/home/circleci/.local/lib/python3.7/site-packages"
       - run:
