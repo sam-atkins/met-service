@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 API_VERSION = "v1.0"
-DEBUG = get_config("DEBUG", True)
+DEBUG = get_config("DEBUG", False)
 
 
 @app.route(f"/{API_VERSION}/weather", methods=["GET", "POST"])
