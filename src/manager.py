@@ -17,14 +17,19 @@ def get_weather_from_provider(lat: str, lon: str):
     Returns:
         JSON response object: weather forecast of the location
     """
-    url = f"https://api.darksky.net/forecast/{DARKSKY_API_KEY}/{lat},{lon}?units=ca"
-    darksky_exclude_list = get_config("darksky_exclude", [])
-    if darksky_exclude_list:
-        exclude_str = ",".join(darksky_exclude_list)
-        url = f"{url}&exclude={exclude_str}"
+    url = _build_url(lat=lat, lon=lon)
     response = requests.get(url)
     status_code = response.status_code
     if 200 <= status_code < 300:
         return response.text
     else:
         response.raise_for_status()
+
+
+def _build_url(lat: str, lon: str) -> str:
+    url = f"https://api.darksky.net/forecast/{DARKSKY_API_KEY}/{lat},{lon}?units=ca"
+    darksky_exclude_list = get_config("darksky_exclude", [])
+    if darksky_exclude_list:
+        exclude_str = ",".join(darksky_exclude_list)
+        url = f"{url}&exclude={exclude_str}"
+    return url
