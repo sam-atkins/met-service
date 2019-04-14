@@ -16,10 +16,11 @@ services:
       project_config_dir: ./src/settings
       DARKSKY_API_KEY: $DARKSKY_API_KEY
   met-service-test:
-      build: .
-      volumes:
-        - ./:/app
-      entrypoint: ''
-      command: bash -c "pytest -vv --cov=src tests/"
-      environment:
-        stage: test
+    build: .
+    volumes:
+      - ./:/app
+    entrypoint: ''
+    command: bash -c "pytest -vv --cov=src tests/"
+    environment:
+      stage: test
+      project_config_dir: ./src/settings
