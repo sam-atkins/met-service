@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/circleci
     environment:
         stage: test
-        project_config_dir: src/settings/
+        project_config_dir: src/settings
     docker:
       # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
       - image: circleci/python:3.7
