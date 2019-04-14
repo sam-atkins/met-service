@@ -7,10 +7,41 @@
 
 Meteorological API service.
 
-**WIP**
-
 ## Development
 
 ### Install
 
+```bash
+docker-compose up --build
+```
+
+The Docker build uses these requirements files:
+
+* `requirements.txt` -> required by the API, installed as part of the Docker build
+* `requirements-test.txt` -> used for testing, installed as part of the Docker build
+
+#### Dev requirements
+
+For local dev, the requirements in `requirements-dev.txt` can optionally be installed in a virtual env.
+
+```bash
+virtualenv -p python3.7 env
+
+source env/bin/activate
+
+pip install -r requirements-dev.txt
+```
+
 ### Tests
+
+```bash
+# run test container
+docker-compose run --entrypoint="" met-service-test  /bin/bash
+
+# run tests
+pytest -vv
+```
+
+## Deploy
+
+[placeholder]
