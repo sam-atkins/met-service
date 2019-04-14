@@ -1,0 +1,3 @@
+use_remote_settings: false
+# NOTE config required for tests included in `.circlei/config.yml`
+# TODO resolve issue with Circle CI not pulling in config from `/settings` dir

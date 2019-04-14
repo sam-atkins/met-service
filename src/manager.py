@@ -28,8 +28,7 @@ def get_weather_from_provider(lat: str, lon: str):
 
 def _build_url(lat: str, lon: str) -> str:
     url = f"https://api.darksky.net/forecast/{DARKSKY_API_KEY}/{lat},{lon}?units=ca"
-    darksky_exclude_list = get_config("darksky_exclude", [])
-    if darksky_exclude_list:
-        exclude_str = ",".join(darksky_exclude_list)
-        url = f"{url}&exclude={exclude_str}"
+    darksky_exclude_str = get_config("darksky_exclude", "")
+    if darksky_exclude_str:
+        url = f"{url}&exclude={darksky_exclude_str}"
     return url

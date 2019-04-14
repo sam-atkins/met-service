@@ -3,8 +3,10 @@ jobs:
   build:
     working_directory: ~/circleci
     environment:
-        stage: test
-        project_config_dir: ~/circleci/circleci/src/settings
+      stage: ci
+      project_config_dir: ~/circleci/circleci/src/settings
+      DARKSKY_API_KEY: fake-api-key
+      darksky_exclude: "minutely,hourly,flags"
     docker:
       # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
       - image: circleci/python:3.7
