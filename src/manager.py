@@ -7,8 +7,8 @@ DARKSKY_API_KEY = get_config("DARKSKY_API_KEY", "")
 
 def get_weather_from_provider(lat: str, lon: str):
     """
-    Makes request to DarkSky API to get weather forecast for location based on
-    latitude and longitude
+    HTTP request to DarkSky API to get weather forecast for the given location based
+    on the latitude and longitude args
 
     Args:
         lat (str): latitude of the location
@@ -27,6 +27,17 @@ def get_weather_from_provider(lat: str, lon: str):
 
 
 def _build_url(lat: str, lon: str) -> str:
+    """
+    Builds the request url, with exclude params to remove forecast data (based on
+    the config param `darksky_exclude`)
+
+    Args:
+        lat (str): latitude of the location
+        lon (str): longitude of the location
+
+    Returns:
+        str: request url
+    """
     url = f"https://api.darksky.net/forecast/{DARKSKY_API_KEY}/{lat},{lon}?units=ca"
     darksky_exclude_str = get_config("darksky_exclude", "")
     if darksky_exclude_str:
