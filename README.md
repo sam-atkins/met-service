@@ -44,4 +44,9 @@ pytest -vv
 
 ## Deploy
 
-[placeholder]
+```bash
+serverless deploy
+
+# deploy using a specific AWS profile
+serverless deploy --aws-profile {AWS_Profile_Name}
+```
