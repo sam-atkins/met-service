@@ -1,0 +1,23 @@
+{
+  "name": "met-service",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sam-atkins/met-service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/sam-atkins/met-service/issues"
+  },
+  "homepage": "https://github.com/sam-atkins/met-service#readme",
+  "devDependencies": {
+    "serverless-python-requirements": "^4.3.0",
+    "serverless-wsgi": "^1.7.2"
+  }
+}
