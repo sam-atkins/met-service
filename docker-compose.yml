@@ -16,7 +16,10 @@ services:
       project_config_dir: ./src/settings
       DARKSKY_API_KEY: $DARKSKY_API_KEY
   met-service-test:
-    build: .
+    build:
+      context: .
+      args:
+        PIP_REQUIREMENTS: requirements-test.txt
     volumes:
       - ./:/app
     entrypoint: ''

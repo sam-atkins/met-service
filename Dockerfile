@@ -6,4 +6,5 @@ EXPOSE 5000
 WORKDIR /app
 ADD . /app
 
-RUN python3 -m pip install -r requirements-test.txt
+ARG PIP_REQUIREMENTS=requirements.txt
+RUN python3 -m pip install -r ${PIP_REQUIREMENTS}
