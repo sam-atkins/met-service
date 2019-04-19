@@ -1,0 +1,5 @@
+{
+  "project_name": "met-service",
+  "DEBUG": false,
+  "darksky_exclude": "minutely,hourly,flags"
+}
