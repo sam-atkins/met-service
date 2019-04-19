@@ -2,9 +2,6 @@ from manageconf import get_config
 import requests
 
 
-DARKSKY_API_KEY = get_config("DARKSKY_API_KEY", "")
-
-
 def get_weather_from_provider(lat: str, lon: str):
     """
     HTTP request to DarkSky API to get weather forecast for the given location based
@@ -38,7 +35,10 @@ def _build_url(lat: str, lon: str) -> str:
     Returns:
         str: request url
     """
-    url = f"https://api.darksky.net/forecast/{DARKSKY_API_KEY}/{lat},{lon}?units=ca"
+    darksky_api_key = get_config("DARKSKY_API_KEY", None)
+    if darksky_api_key is None:
+        raise Exception("Config error, missing darksky_api_key")
+    url = f"https://api.darksky.net/forecast/{darksky_api_key}/{lat},{lon}?units=ca"
     darksky_exclude_str = get_config("darksky_exclude", "")
     if darksky_exclude_str:
         url = f"{url}&exclude={darksky_exclude_str}"
