@@ -1,5 +1,4 @@
 {
   "use_remote_settings": false,
-  "DEBUG": false,
-  "DARKSKY_API_KEY": "fake-api-key"
+  "DEBUG": false
 }
