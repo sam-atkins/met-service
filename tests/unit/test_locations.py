@@ -1,6 +1,6 @@
 import pytest
 
-from src.locations import (
+from met_service.locations import (
     get_location_info_by_short_name,
     get_location_coords_by_short_name,
 )

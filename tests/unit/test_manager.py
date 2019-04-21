@@ -3,7 +3,7 @@ import json
 import pytest
 from requests.exceptions import HTTPError
 
-from src.manager import get_weather_from_provider, _build_url
+from met_service.manager import get_weather_from_provider, _build_url
 from tests.datasets.darksky_api_response import DARKSKY_RESPONSE
 
 
