@@ -3,14 +3,8 @@ import json
 from manageconf import Config, get_config  # noqa F401
 from requests.exceptions import HTTPError
 
-try:
-    from locations import get_location_coords_by_short_name
-except ImportError:
-    from met_service.locations import get_location_coords_by_short_name
-try:
-    from manager import get_weather_from_provider
-except ImportError:
-    from met_service.manager import get_weather_from_provider
+from .locations import get_location_coords_by_short_name
+from .manager import get_weather_from_provider
 
 
 def get_weather(event, context):
