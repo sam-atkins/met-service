@@ -34,11 +34,11 @@ Outputs:
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   GetWeatherApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Description: "API Gateway endpoint URL for Dev stage for  GetWeatherFunction"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/dev/weather/"
   GetWeatherFunction:
-    Description: "Hello World Lambda Function ARN"
+    Description: "GetWeather Lambda Function ARN"
     Value: !GetAtt GetWeatherFunction.Arn
   GetWeatherFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
+    Description: "Implicit IAM Role created for GetWeather function"
     Value: !GetAtt GetWeatherFunctionRole.Arn
