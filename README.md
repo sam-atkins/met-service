@@ -9,44 +9,61 @@ Meteorological API service.
 
 ## Development
 
-### Install
+Prerequisites:
+
+* Python 3
+* [AWS SAM CLI](https://github.com/awslabs/aws-sam-cli)
 
 ```bash
-docker-compose up --build
-```
-
-The Docker build uses these requirements files:
-
-* `requirements.txt` -> required by the API, installed as part of the Docker build
-* `requirements-test.txt` -> used for testing, installed as part of the Docker build
-
-#### Dev requirements
-
-For local dev, the requirements in `requirements-dev.txt` can optionally be installed in a virtual env.
-
-```bash
+# set up a virtual env
 virtualenv -p python3.7 env
 
+# activate the virtual env
 source env/bin/activate
 
+# install requirements
 pip install -r requirements-dev.txt
+
+# build the Lambda function for local dev
+sam build --use-container
 ```
 
-### Tests
+For local dev, add a file `.env.json` with contents:
+
+```json
+{
+  "GetWeatherFunction": {
+    "DARKSKY_API_KEY": "XXXXXXXXXXX"
+  }
+}
+```
+
+And add the Darksky api key to replace XXXXXXXXXXX.
+
+To run locally:
 
 ```bash
-# run test container
-docker-compose run --entrypoint="" met-service-test  /bin/bash
+# run API
+sam local start-api -d 3000 --env-vars .env.json --profile {aws-profile}
+
+# invoke function
+sam local invoke GetWeatherFunction --event event.json --env-vars .env.json --profile {aws-profile}
+```
+
+More info in the [AWS SAM CLI](https://github.com/awslabs/aws-sam-cli/blob/develop/docs/usage.md#invoke-functions-locally) docs.
+
+## Tests
+
+```bash
+# make sure venv is activated
+source env/bin/activate
 
 # run tests
-pytest -vv
+python -m pytest -vv
 ```
 
 ## Deploy
 
-```bash
-serverless deploy
+[Placeholder]
 
-# deploy using a specific AWS profile
-serverless deploy --aws-profile {AWS_Profile_Name}
-```
+More info in the [AWS SAM CLI](https://github.com/awslabs/aws-sam-cli/blob/develop/docs/deploying_serverless_applications.md) docs.
