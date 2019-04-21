@@ -11,6 +11,10 @@ def get_weather(event, context):
     """
     Gets weather for a provided location.
 
+    Args:
+        event (dict): API Gateway Lambda Proxy Input Format
+        context (dict): Lambda Context runtime methods and attributes
+
     Returns:
         JSON response object
     """
