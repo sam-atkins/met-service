@@ -1,2 +1,4 @@
+-r ./requirements-test.txt
+
 black==19.3b0
 flake8==3.7.7

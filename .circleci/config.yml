@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: requirements_4-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
+          key: requirements_5-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
       - run:
           name: Install Python dependencies in a virtual env
           command: |
@@ -21,14 +21,14 @@ jobs:
             . venv/bin/activate
             pip install -r requirements-test.txt
       - save_cache:
-          key: requirements_4-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
+          key: requirements_5-{{ .Branch }}-{{ checksum "requirements-test.txt" }}
           paths:
             - "venv"
       - run:
           name: Run tests
           command: |
             . venv/bin/activate
-            pytest -vv --cov=src tests/
+            python -m pytest -vv --cov=met_service tests/
             coverage html -d artifacts
       - store_artifacts:
           path: artifacts
