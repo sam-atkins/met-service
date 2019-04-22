@@ -4,7 +4,7 @@ from manageconf import Config, get_config  # noqa F401
 from requests.exceptions import HTTPError
 
 # NOTE due to different folder structure in build vs. dev, the try/except allows
-# pytest to find modules and run the tests
+# runtime and pytest to find the modules
 try:
     from locations import get_location_coords_by_short_name
 except ModuleNotFoundError:
@@ -15,7 +15,7 @@ except ModuleNotFoundError:
     from met_service.manager import get_weather_from_provider
 
 
-def get_weather(event, context):
+def get_weather(event: dict, context: dict) -> dict:
     """
     Gets weather for a provided location.
 

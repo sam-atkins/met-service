@@ -25,6 +25,10 @@ source env/bin/activate
 pip install -r requirements-dev.txt
 
 # build the Lambda function for local dev
+sam build
+
+# alternatively, build using Docker container (had to use on some occasions to manage
+# install of python dependencies)
 sam build --use-container
 ```
 
