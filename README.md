@@ -33,7 +33,8 @@ For local dev, add a file `.env.json` with contents:
 ```json
 {
   "GetWeatherFunction": {
-    "DARKSKY_API_KEY": "XXXXXXXXXXX"
+    "DARKSKY_API_KEY": "XXXXXXXXXXX",
+    "stage": "local"
   }
 }
 ```
