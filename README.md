@@ -64,6 +64,42 @@ python -m pytest -vv
 
 ## Deploy
 
-[Placeholder]
+[AWS SAM CLI](https://github.com/awslabs/aws-sam-cli/blob/develop/docs/deploying_serverless_applications.md) docs.
 
-More info in the [AWS SAM CLI](https://github.com/awslabs/aws-sam-cli/blob/develop/docs/deploying_serverless_applications.md) docs.
+### Build Artifacts
+
+Ensure build artifacts are available /  up-to-date.
+
+```bash
+sam build --use-container
+
+# output
+Build Succeeded
+
+Built Artifacts  : .aws-sam/build
+Built Template   : .aws-sam/build/template.yaml
+```
+
+### Package Artifacts
+
+Confirm path to `template.yml` and update `s3-bucket-name`. If not using default AWS profile, replace `aws-profile` with the actual profile name. If using default AWS profile, this line can be removed.
+
+```bash
+sam package \
+    --template-file .aws-sam/build/template.yaml \
+    --output-template-file serverless-output.yaml \
+    --s3-bucket s3-bucket-name \
+    --profile aws-profile
+```
+
+### Deploy Package
+
+Update `new-stack-name` and `aws-profile`.
+
+```bash
+sam deploy \
+    --template-file serverless-output.yaml \
+    --stack-name new-stack-name \
+    --capabilities CAPABILITY_IAM \
+    --profile aws-profile
+```
