@@ -2,7 +2,7 @@ from manageconf import get_config
 import requests
 
 
-def get_weather_from_provider(lat: str, lon: str):
+def get_weather_from_provider(lat: str, lon: str) -> str:
     """
     HTTP request to DarkSky API to get weather forecast for the given location based
     on the latitude and longitude args

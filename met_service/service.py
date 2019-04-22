@@ -53,7 +53,7 @@ def get_weather(event, context):
             }
     try:
         response = get_weather_from_provider(lat=lat, lon=lon)
-        return {"statusCode": 200, "body": json.dumps(response)}
+        return {"statusCode": 200, "body": response}
     except HTTPError as ex:
         error_message = f"Server error: {ex}"
         return {"statusCode": 500, "body": json.dumps(error_message)}
