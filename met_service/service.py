@@ -30,11 +30,11 @@ def get_weather(event: dict, context: dict) -> dict:
         "statusCode": 400,
         "body": json.dumps({"message": "Provide the location name or lat and lon"}),
     }
-    body = event.get("body", {})
-    if body is None:
+    payload = event.get("body", {})
+    if isinstance(payload, str):
+        payload = json.loads(payload)
+    if payload is None:
         return error_response
-
-    payload = json.loads(body)
     lat = payload.get("lat", None)
     lon = payload.get("lon", None)
     if None in [lat, lon]:
@@ -56,4 +56,6 @@ def get_weather(event: dict, context: dict) -> dict:
         return {"statusCode": 200, "body": response}
     except HTTPError as ex:
         error_message = f"Server error: {ex}"
+        # log to Cloudwatch
+        print(error_message)
         return {"statusCode": 500, "body": json.dumps(error_message)}
