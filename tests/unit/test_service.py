@@ -14,7 +14,6 @@ from tests.datasets.darksky_api_response import DARKSKY_RESPONSE
 def test_get_weather_with_name_returns_200(
     mock_get_weather, apigw_full_event_with_name, mocker
 ):
-
     response = get_weather(apigw_full_event_with_name, "")
     assert response["statusCode"] == 200
     data = json.loads(response["body"])
@@ -28,7 +27,6 @@ def test_get_weather_with_name_returns_200(
 def test_get_weather_with_coords_returns_200(
     mock_get_weather, apigw_event_with_coords, mocker
 ):
-
     response = get_weather(apigw_event_with_coords, "")
     assert response["statusCode"] == 200
     data = json.loads(response["body"])
@@ -42,7 +40,6 @@ def test_get_weather_with_coords_returns_200(
 def test_get_weather_with_empty_request_body_returns_400(
     mock_get_weather, apigw_event_empty_body, mocker
 ):
-
     response = get_weather(apigw_event_empty_body, "")
     assert response["statusCode"] == 400
     data = json.loads(response["body"])
@@ -56,7 +53,6 @@ def test_get_weather_with_empty_request_body_returns_400(
 def test_get_weather_with_incomplete_request_body_returns_400(
     mock_get_weather, apigw_event_with_incomplete_coords, mocker
 ):
-
     response = get_weather(apigw_event_with_incomplete_coords, "")
     assert response["statusCode"] == 400
     data = json.loads(response["body"])
@@ -70,7 +66,6 @@ def test_get_weather_with_incomplete_request_body_returns_400(
 def test_get_weather_with_name_not_config_returns_400(
     mock_get_weather, apigw_event_with_name_not_in_config, mocker
 ):
-
     response = get_weather(apigw_event_with_name_not_in_config, "")
     assert response["statusCode"] == 400
     data = json.loads(response["body"])
@@ -81,6 +76,5 @@ def test_get_weather_with_name_not_config_returns_400(
 def test_get_weather_with_name_returns_500_if_httperror(
     mock_get_weather, apigw_full_event_with_name, mocker
 ):
-
     response = get_weather(apigw_full_event_with_name, "")
     assert response["statusCode"] == 500
